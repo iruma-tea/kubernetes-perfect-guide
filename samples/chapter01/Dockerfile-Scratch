@@ -1,0 +1,10 @@
+# Stage 1のコンテナ（アプリケーションをビルド）
+# Alpine 3.18ベースのgolang
+FROM golang:1.21.3-alpine3.18 as builder
+COPY ./main.go ./
+RUN CGO_ENABLED=0 go build -o /go-app ./main.go
+
+# Stage 2のコンテナ（ビルドしたバイナリを内包した実行用コンテナを作成）
+FROM scratch
+COPY --from=builder /go-app .
+ENTRYPOINT [ "./go-app" ]
