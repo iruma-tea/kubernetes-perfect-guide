@@ -14,3 +14,15 @@
  ## コンテナの起動
   * docker container run -d -p 12345:8080 sample-image:0.1
   * curl http://localhost:12345
+
+## chapter03のコマンド
+### minikube
+  * minikube start
+  * minikube stop
+  * minikube delete
+### kind
+ * kind create cluster --config kind.yaml --name kindcluster
+ * kind get clusters
+ * 複数のKubernetesクラスタを利用している場合、kubectlでContextを切り替える。
+ * kubectl config use-context kind-kindcluster
+ * kind delete cluster -n kindcluseter
